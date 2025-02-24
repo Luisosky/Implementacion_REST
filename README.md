@@ -1,20 +1,33 @@
 # Implementación de Servicios REST
 
-Este proyecto se enfoca en la implementación de servicios REST, específicamente en las operaciones CRUD y paginación.
+Este proyecto está diseñado para demostrar cómo implementar una API REST que soporte operaciones CRUD y paginación utilizando Spring Boot. Se utiliza una base de datos en memoria mediante H2 para facilitar las pruebas y el desarrollo sin la necesidad de configurar un servidor de bases de datos externo.
 
-## Funcionalidades principales
+## Características del Proyecto
 
-- **Crear** (Create): Permite agregar nuevos registros.
-- **Leer** (Read): Permite obtener uno o más registros.
-- **Actualizar** (Update): Permite modificar registros existentes.
-- **Eliminar** (Delete): Permite eliminar registros.
-- **Paginación**: Permite dividir los resultados en páginas para facilitar la navegación y visualización.
+- **Operaciones CRUD:** Implementación de endpoints para crear, leer, actualizar y eliminar usuarios.
+- **Paginación:** Soporte para paginar los resultados, facilitando el manejo de grandes volúmenes de datos.
+- **Validación de Datos:** Se utilizan las anotaciones de Jakarta Validation para asegurar la integridad de los datos.
+- **Base de Datos en Memoria:** Configurada con H2, permitiendo pruebas rápidas sin requerir un entorno de base de datos adicional.
+- **Pruebas con MockMvc:** Se incluyen pruebas de integración utilizando MockMvc para verificar el correcto funcionamiento de la API.
 
-## Cómo ejecutar el proyecto
+## Tecnologías Utilizadas
 
-Para ejecutar el proyecto, sigue los siguientes pasos:
+- Java 21
+- Spring Boot 3.x (Web, Data JPA)
+- H2 Database (base de datos en memoria)
+- JUnit y MockMvc para pruebas de integración
 
-1. Clona el repositorio en tu máquina local.
-2. Importa el proyecto en tu IDE favorito.
-3. Configura las dependencias necesarias.
-4. Ejecuta la aplicación.
+## Configuración del Proyecto
+
+El archivo `application.properties` está configurado para utilizar H2 como base de datos en memoria, lo que permite ejecutar y probar la aplicación sin requerir una base de datos externa. El archivo `application.properties` debe tener la siguiente config:
+
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.h2.console.enabled=true
+
+# Configuración JPA para crear y eliminar el esquema automáticamente
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
