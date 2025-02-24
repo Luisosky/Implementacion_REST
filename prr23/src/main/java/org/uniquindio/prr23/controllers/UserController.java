@@ -1,12 +1,11 @@
 package org.uniquindio.prr23.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-
-
 import jakarta.validation.Valid;
 import org.uniquindio.prr23.dto.UserRegistrationRequest;
 import org.uniquindio.prr23.service.UserService;
@@ -38,6 +37,12 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserRegistrationRequest>> getAllUsers() {
         List<UserRegistrationRequest> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UserRegistrationRequest>> getAllUsersPaginated(Pageable pageable) {
+        Page<UserRegistrationRequest> users = userService.getAllUsers(pageable);
         return ResponseEntity.ok(users);
     }
 

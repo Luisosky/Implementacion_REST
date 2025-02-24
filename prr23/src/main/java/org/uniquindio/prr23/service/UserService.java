@@ -1,10 +1,13 @@
 package org.uniquindio.prr23.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.uniquindio.prr23.dto.UserRegistrationRequest;
 
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
@@ -34,6 +37,22 @@ public class UserService {
 
     public List<UserRegistrationRequest> getAllUsers() {
         return new ArrayList<>(users);
+    }
+
+    // Metodo para la paginacion/pagination
+    public Page<UserRegistrationRequest> getAllUsers(Pageable pageable) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<UserRegistrationRequest> list;
+
+        if (users.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, users.size());
+            list = users.subList(startItem, toIndex);
+        }
+        return new PageImpl<>(list, pageable, users.size());
     }
 
     public Optional<UserRegistrationRequest> updateUser(Long id, UserRegistrationRequest userRegistrationRequest) {

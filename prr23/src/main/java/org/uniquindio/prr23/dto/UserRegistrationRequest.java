@@ -7,14 +7,13 @@ import org.uniquindio.prr23.model.Rol;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
 public record UserRegistrationRequest(
         Long id,
         @NotBlank(message = "El campo es requerido")
         @Email(message = "Debe ser un email válido")
         String email,
         @NotBlank(message = "El campo es requerido")
-        @Pattern(regexp = "^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z]).*$", message = "Debe contener al menos una letra mayúscula, una letra minúscula y un número")
+        @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$", message = "Debe contener al menos una letra mayúscula, una letra minúscula y un número")
         @Size(min = 8, message = "La longitud mínima es 8")
         String password,
         @NotBlank(message = "El campo es requerido")
