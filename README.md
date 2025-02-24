@@ -17,6 +17,26 @@ Este proyecto está diseñado para demostrar cómo implementar una API REST que 
 - H2 Database (base de datos en memoria)
 - JUnit y MockMvc para pruebas de integración
 
+## Cómo Ejecutar la Aplicación
+
+1. Clonar el Repositorio:
+ ```
+  git clone https://github.com/<tu_usuario>/<nombre_del_repositorio>.git
+```
+2. Importar en el IDE 
+3. Compilar y Ejecutar:
+   
+     Maven:
+   
+     ```
+    mvn spring-boot:run
+    ```
+     Gradle:
+   
+   ```
+    ./gradlew bootRun
+    ```
+
 ## Configuración del Proyecto
 
 El archivo `application.properties` está configurado para utilizar H2 como base de datos en memoria, lo que permite ejecutar y probar la aplicación sin requerir una base de datos externa. El archivo `application.properties` debe tener la siguiente config:
@@ -31,3 +51,7 @@ spring.h2.console.enabled=true
 # Configuración JPA para crear y eliminar el esquema automáticamente
 spring.jpa.hibernate.ddl-auto=create-drop
 spring.jpa.show-sql=true
+
+
+
+1
